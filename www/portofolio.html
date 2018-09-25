@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngstorage/ngStorage.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar-calm">
+        <h1 class="title">Portfolio</h1>
+      </ion-header-bar>
+      <ion-content ng-controller="localStorageCtrl" class="padding">
+      <div align="center">
+              <a href="index.html" class="button button-calm icon-center ion-android-home"></a>
+              <a href="biodata.html" class="button button-calm icon-center ion-android-person"></a>
+              <a href="pendidikan.html" class="button button-calm icon-center ion-ribbon-b"></a>
+              <a href="pekerjaan.html" class="button button-calm icon-center ion-briefcase"></a>
+              <a href="portofolio.html" class="button button-calm icon-center ion-network"></a>
+        </div>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Nama Portfolio</span>
+            <input type="text" placeholder="nama portfolio" ng-model="a.namaport">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Tanggal Pembuatan</span>
+            <input type="text" placeholder="DD MM YYYY" ng-model="a.tglport">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Bentuk Portfolio</span>
+              <ion-radio  ng-model="a.bentukport" value="Web">Web</ion-radio><br>
+
+              <ion-radio  value="Mobile" ng-model="a.bentukport">Mobile APP</ion-radio><br>
+
+              <ion-radio  value="Desktop" ng-model="a.bentukport">Desktop APP</ion-radio><br>
+
+              <ion-radio  value="Other" ng-model="a.bentukport">Other</ion-radio><br>
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Keterangan</span>
+            <input type="text" placeholder="keterangan" ng-model="a.ktrport">
+          </label>
+          <h6>Upload Dokumen Pendudukung (.docx / .pdf)</h6>
+          <form action="#">
+            <input type="file" name="portfoliodoc">
+          </form>
+
+        </div>
+        <div class="spacer" style="height: 5px;"></div>
+        <button class="button button-calm button-block" ng-click="save()">Simpan</button>
+        <div class="spacer" style="height: 5px;"></div>
+        <div class="row">
+          <div class="col">
+            <center><button class="button icon-left ion-trash-b button-assertive" ng-click="remove()">Hapus Semua</button></center>
+          </div>
+          <div class="col">
+            <center><button class="button icon-left ion-clipboard button-balanced" ng-click="show()">Tampilkan</button></center>
+          </div>
+        </div>
+        <div>
+          <hr>
+          <center><strong>Data Portofolio</strong></center>
+          <hr>
+        </div>
+        <div class="card" ng-repeat="item in showData">
+          <div class="item item-text-wrap">
+            <div class="row">
+              <div class="col-80">
+                <i class="icon ion-android-contact"></i>
+                <h3>Nama Portfolio: {{item.namaport}}</h3>
+                <h3>Tanggal Pembuatan: {{item.tglport}}</h3>
+                <h3>Bentuk Portfolio: {{item.bentukport}}</h3>
+                <h3>Keterangan: {{item.ktrport}}</h3>
+                
+              </div>
+              <div class="col">
+                <a class="button button-icon icon ion-trash-a" style="color: red" ng-click="del($index)"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
